@@ -15,7 +15,7 @@ public interface QuestionMapper {
 
     @SelectKey(statement = "SELECT MAX(questionid) FROM question",keyProperty = "questionId",
             resultType = int.class,keyColumn = "questionid",before = true)
-    @Insert("INSERT INTO question(description,answer,level) VALUES (#{description},#{answer},#{level})")
+    @Insert("INSERT INTO question(description,answer,level,quizid) VALUES (#{description},#{answer},#{level},#{quizId})")
     @Options(useGeneratedKeys = true,keyProperty = "id")
     void saveQuestion(Question question);
 

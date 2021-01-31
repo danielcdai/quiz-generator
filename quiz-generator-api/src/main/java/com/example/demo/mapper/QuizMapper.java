@@ -8,25 +8,23 @@ import java.util.List;
 
 @Mapper
 public interface QuizMapper {
-    @Select("SELECT * FROM quiz WHERE quizid = #{ID}")
-    @Results(
-            @Result(property = "questions", column = "quizid",
-                    javaType = List.class,many = @Many(select = "selectQuestions"))
-    )
-    Quiz selectQuizById(@Param("ID") Integer quizId);
+    @Select("SELECT * FROM quiz WHERE quizId = #{quizId}")
+    @Results(id = "quiz",value = {@Result(property = "questions", column = "quizId",
+            javaType = List.class, many = @Many(select = "selectQuestions")),@Result(property = "quizId", column = "quizId")
+    })
+    Quiz selectQuizById(Integer quizId);
 
     @Select("SELECT * FROM quiz")
-    @Results(@Result(property = "questions", column = "quizid",
-            javaType = List.class,many = @Many(select = "selectQuestions")))
+    @ResultMap("quiz")
     List<Quiz> selectAllQuizzes();
 
-    @Select("SELECT * FROM question WHERE quizid = #{quizid}")
-    List<Question> selectQuestions(String quizid);
+    @Select("SELECT * FROM question WHERE quizid = #{quizId}")
+    List<Question> selectQuestions(String quizId);
 
     @SelectKey(statement = "SELECT MAX(quizid) FROM quiz",keyProperty = "quizId",
             resultType = int.class,keyColumn = "quizid",before = true)
     @Insert("INSERT INTO quiz(timelimit,fullmark) VALUES (#{timeLimit},#{fullMark})")
-    int saveQuiz(Quiz quiz);
+    void saveQuiz(Quiz quiz);
 
     @SelectKey(statement = "SELECT MAX(quizid) FROM quiz",keyProperty = "quizId",
             resultType = int.class,keyColumn = "quizid",before = true)
@@ -37,7 +35,7 @@ public interface QuizMapper {
             "</foreach>"+
             "</script>")
     @Options(useGeneratedKeys = true, keyProperty = "quizId", keyColumn = "quizid")
-    int saveQuestions(List<Question> questions);
+    void saveQuestions(List<Question> questions);
 
     default void saveQuizwithQuestions(Quiz quiz){
         saveQuiz(quiz);
