@@ -45,4 +45,22 @@ public interface QuizMapper {
         saveQuiz(quiz);
         saveQuestions(quiz.getQuestions());
     };
+
+//    @Delete("<script>"+
+//            "DELETE FROM question(description,answer,level,quizid) WHERE questionid =" +
+//            "<foreach collection='list' index='index' item='item' open='(' separator='),(' close=')'>"+
+//            "#{item.questionId}"+
+//            "</foreach>"+
+//            "</script>")
+//    void deleteQuestions(Integer questionId);
+
+    @Delete("DELETE FROM question WHERE quizid = #{quizId}")
+    void deleteQuestions(Integer quizId);
+    @Delete("DELETE FROM quiz WHERE quizid = #{quizId}")
+    void deleteQuizById(Integer quizId);
+
+    default void deleteQuizwithQuestions(Integer quizId){
+        deleteQuestions(quizId);
+        deleteQuizById(quizId);
+    };
 }

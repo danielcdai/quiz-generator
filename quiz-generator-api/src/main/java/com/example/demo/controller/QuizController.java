@@ -33,5 +33,10 @@ public class QuizController {
         return ResponseEntity.ok("Success");
     }
 
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteQuestion(@RequestParam(name = "Id") int questionId){
+        quizMapper.deleteQuizwithQuestions(questionId);
+        return ResponseEntity.ok("Success");
+    }
 
 }
