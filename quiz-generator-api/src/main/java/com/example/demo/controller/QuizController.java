@@ -15,20 +15,23 @@ public class QuizController {
     private QuizMapper quizMapper;
 
     @GetMapping("")
-    public ResponseEntity<Quiz> getQuestion(@RequestParam(name = "Id") int quizId){
+    public ResponseEntity<Quiz> getQuiz(@RequestParam(name = "Id") int quizId){
         Quiz quiz = quizMapper.selectQuizById(quizId);
         return ResponseEntity.ok(quiz);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Quiz>> getAllQuestions(){
-        List<Quiz> questionList = quizMapper.selectAllQuizzes();
-        return ResponseEntity.ok(questionList);
+    public ResponseEntity<List<Quiz>> getAllQuizzes(){
+        List<Quiz> quizList = quizMapper.selectAllQuizzes();
+        return ResponseEntity.ok(quizList);
     }
 
     @PostMapping("")
-    public ResponseEntity<String> saveQuestion(@RequestBody Quiz quiz) {
-        quizMapper.saveQuiz(quiz);
+    public ResponseEntity<String> saveQuiz(@RequestBody Quiz quiz) {
+        quizMapper.saveQuizwithQuestions(quiz);
+
         return ResponseEntity.ok("Success");
     }
+
+
 }

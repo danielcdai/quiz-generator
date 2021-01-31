@@ -2,12 +2,14 @@ package com.example.demo.model;
 
 public class Question {
 
-    private Integer Id;
+
+
+    private Integer questionId;
     private String description;
     private String answer;
     private Integer level;
     private Integer quizId;
-    private Quiz quiz;
+
 
     public Integer getQuizId() {
         return quizId;
@@ -17,20 +19,12 @@ public class Question {
         this.quizId = quizId;
     }
 
-    public Quiz getQuiz() {
-        return quiz;
+    public Integer getQuestionId() {
+        return questionId;
     }
 
-    public void setQuiz(Quiz quiz) {
-        this.quiz = quiz;
-    }
-
-    public Integer getId() {
-        return Id;
-    }
-
-    public void setId(Integer Id) {
-        this.Id = Id;
+    public void setQuestionId(Integer questionId) {
+        this.questionId = questionId;
     }
 
     public String getDescription() {
@@ -57,13 +51,4 @@ public class Question {
         this.level = level;
     }
 
-    @Override
-    public String toString() {
-        return "Question{" +
-                "Id=" + Id +
-                ", description='" + description + '\'' +
-                ", answer='" + answer + '\'' +
-                ", level=" + level +
-                '}';
-    }
 }

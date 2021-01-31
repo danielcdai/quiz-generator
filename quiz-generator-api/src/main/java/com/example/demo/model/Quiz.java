@@ -2,19 +2,20 @@ package com.example.demo.model;
 
 import java.util.List;
 
+
 public class Quiz {
 
-    private Integer Id;
+    private Integer quizId;
     private Integer timeLimit;
     private Integer fullMark;
     private List<Question> questions;
 
-    public Integer getId() {
-        return Id;
+    public Integer getQuizId() {
+        return quizId;
     }
 
-    public void setId(Integer id) {
-        Id = id;
+    public void setQuizId(Integer quizId) {
+        this.quizId = quizId;
     }
 
     public Integer getTimeLimit() {
@@ -40,4 +41,5 @@ public class Quiz {
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
+
 }
