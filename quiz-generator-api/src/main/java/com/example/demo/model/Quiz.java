@@ -2,8 +2,11 @@ package com.example.demo.model;
 
 import java.util.List;
 
-
+/**
+ * Quiz entity class
+ */
 public class Quiz {
+
 
     private Integer quizId;
     private Integer timeLimit;

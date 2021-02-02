@@ -14,18 +14,32 @@ public class QuizController {
     @Autowired(required = false)
     private QuizMapper quizMapper;
 
+    /**
+     * Query the quiz by quizId
+     * @param quizId
+     * @return ResponseEntity.ok(quiz)
+     */
     @GetMapping("")
     public ResponseEntity<Quiz> getQuiz(@RequestParam(name = "Id") int quizId){
         Quiz quiz = quizMapper.selectQuizById(quizId);
         return ResponseEntity.ok(quiz);
     }
 
+    /**
+     * Query all quizzes
+     * @return ResponseEntity.ok(quizList)
+     */
     @GetMapping("/all")
     public ResponseEntity<List<Quiz>> getAllQuizzes(){
         List<Quiz> quizList = quizMapper.selectAllQuizzes();
         return ResponseEntity.ok(quizList);
     }
 
+    /**
+     * Insert quiz
+     * @param quiz
+     * @return ResponseEntity.ok("Success")
+     */
     @PostMapping("")
     public ResponseEntity<String> saveQuiz(@RequestBody Quiz quiz) {
         quizMapper.saveQuizwithQuestions(quiz);
@@ -33,9 +47,14 @@ public class QuizController {
         return ResponseEntity.ok("Success");
     }
 
+    /**
+     * Delete quiz by quizId
+     * @param quizId
+     * @return ResponseEntity.ok("Success")
+     */
     @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteQuestion(@RequestParam(name = "Id") int questionId){
-        quizMapper.deleteQuizwithQuestions(questionId);
+    public ResponseEntity<String> deleteQuiz(@RequestParam(name = "Id") int quizId){
+        quizMapper.deleteQuizwithQuestions(quizId);
         return ResponseEntity.ok("Success");
     }
 

@@ -1,8 +1,9 @@
 package com.example.demo.model;
 
+/**
+ * Question entity class
+ */
 public class Question {
-
-
 
     private Integer questionId;
     private String description;
